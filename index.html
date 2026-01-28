@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Rose Day 💖</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  margin:0;
+  overflow:hidden;
+  background:linear-gradient(to bottom,#ffdde1,#ee9ca7);
+}
+
+/* ---------- PAGE THEMES ---------- */
+#p1{background:linear-gradient(180deg,#ffe6f0,#ffb6c1);}
+#p2{background:linear-gradient(180deg,#ffd1dc,#ff9aa2);}
+#p3{background:linear-gradient(180deg,#ffc0cb,#ff8fab);}
+#p4{background:linear-gradient(180deg,#ffb3c6,#ff4d6d);}
+
+.page{
+  position:absolute;
+  inset:0;
+  display:none;
+  justify-content:center;
+  align-items:center;
+}
+.page.active{display:flex;}
+
+/* ---------- MAIN BOX ---------- */
+.box{
+  width:95vw;
+  height:92vh;
+  max-width:900px;
+  background:rgba(255,214,229,.92);
+  border-radius:28px;
+  padding:24px 24px 85px;
+  text-align:center;
+  position:relative;
+  overflow:auto;
+  box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+/* ---------- VIDEO ---------- */
+.box video{
+  width:90%;
+  max-width:420px;
+  border-radius:22px;
+  margin-bottom:12px;
+}
+
+/* ---------- VANISH TEXT (ALL PAGES) ---------- */
+h1,h2,p{
+  animation:vanish 4s ease-in-out infinite;
+}
+
+@keyframes vanish{
+  0%{opacity:0; transform:scale(.9);}
+  20%{opacity:1; transform:scale(1);}
+  70%{opacity:1;}
+  100%{opacity:0; transform:scale(1.05);}
+}
+
+/* ---------- PAGE 4 TEXT (APPEAR ONLY) ---------- */
+#p4 h1,
+#p4 p{
+  animation:fadeOnce 2.2s ease forwards;
+}
+
+@keyframes fadeOnce{
+  from{
+    opacity:0;
+    transform:translateY(15px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* ---------- BUTTON ---------- */
+button{
+  background:#ff4f87;
+  border:none;
+  padding:14px 30px;
+  border-radius:30px;
+  color:#fff;
+  font-size:17px;
+  cursor:pointer;
+}
+
+#noBtn{position:relative;}
+
+.bottom-btn{
+  position:absolute;
+  bottom:22px;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+.page1-btn{
+  margin-top:22px;
+  display:flex;
+  justify-content:center;
+}
+/* ---------- GRID ---------- */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:18px;
+  margin-top:18px;
+}
+
+/* ---------- CARD ---------- */
+.card{
+  background:#ffeaf2;
+  border-radius:24px;
+  height:230px;
+  cursor:pointer;
+  perspective:1500px;
+}
+
+@media(min-width:768px){
+  .card{height:270px;}
+}
+
+.card-inner{
+  width:100%;
+  height:100%;
+  position:relative;
+  transform-style:preserve-3d;
+  transition:.9s;
+}
+
+.card.flip .card-inner{
+  transform:rotateY(180deg);
+}
+
+.face{
+  position:absolute;
+  inset:0;
+  border-radius:22px;
+  backface-visibility:hidden;
+  overflow:hidden;
+}
+
+.front img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:22px;
+}
+
+.back{
+  background:#ff4f87;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  font-size:15px;
+  text-align:center;
+  transform:rotateY(180deg);
+}
+
+/* ---------- REALISTIC FALLING ROSES ---------- */
+.rose{
+  position:fixed;
+  top:-10vh;
+  pointer-events:none;
+  animation:
+    fall linear forwards,
+    sway ease-in-out infinite;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(360deg);
+  }
+}
+
+@keyframes sway{
+  0%{margin-left:0;}
+  50%{margin-left:40px;}
+  100%{margin-left:0;}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop autoplay muted>
+  <source src="music/music_1.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PAGE 1 -->
+<div class="page active" id="p1">
+  <div class="box">
+    <video src="videos/purple_flower_emoji.mp4" autoplay loop muted></video>
+    <h1>🌹 Happy Rose Day 🌹</h1>
+    <div class="page1-btn">
+      <button onclick="go(2)">Next 💖</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+  <div class="box">
+    <video src="videos/top_loop.mp4" autoplay loop muted></video>
+    <p>
+      With this rose, I give you my heart, today and always.<br>
+      <b>Will you accept this?</b>
+    </p>
+    <button onclick="go(3)">Yes 💕</button>
+    <button id="noBtn">No 🙈</button>
+  </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="p3">
+  <div class="box">
+    <h2>Tap each memory 💖</h2>
+
+    <div class="grid">
+
+      <div class="card" onclick="flip(this,'You bring a happiness into my life I never knew I was missing.')">
+        <div class="card-inner">
+          <div class="face front"><img src="images/photo1.jpg"></div>
+          <div class="face back"></div>
+        </div>
+      </div>
+
+      <div class="card" onclick="flip(this,'With you, even ordinary moments feel magical.')">
+        <div class="card-inner">
+          <div class="face front"><img src="images/photo2.jpg"></div>
+          <div class="face back"></div>
+        </div>
+      </div>
+
+      <div class="card" onclick="flip(this,'My heart feels safest with you.')">
+        <div class="card-inner">
+          <div class="face front"><img src="images/photo3.jpg"></div>
+          <div class="face back"></div>
+        </div>
+      </div>
+
+      <div class="card" onclick="flip(this,'Your smile changes my entire world.')">
+        <div class="card-inner">
+          <div class="face front"><img src="images/photo4.jpg"></div>
+          <div class="face back"></div>
+        </div>
+      </div>
+
+      <div class="card" onclick="flip(this,'I choose you — today, tomorrow, always.')">
+        <div class="card-inner">
+          <div class="face front"><img src="images/photo5.jpg"></div>
+          <div class="face back"></div>
+        </div>
+      </div>
+
+      <div class="card" onclick="flip(this,'Every version of my future has you in it.')">
+        <div class="card-inner">
+          <div class="face front"><img src="images/photo6.jpg"></div>
+          <div class="face back"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <button onclick="go(4)" class="bottom-btn">Next 💘</button>
+  </div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="p4">
+  <div class="box">
+    <h1>❤️ I Love You ❤️</h1>
+
+    <p>
+      🌹 Happy Rose Day 🌹<br><br>
+
+      Dil ne socha aaj kuchh khaas likhun 💌<br>
+      Tumhari tashreef mein apni har ek yaad likhun ✨<br><br>
+
+      Aaj pehla Rose Day hai jo tumhare saath hai 🌹<br>
+      Is pal ko main apni zindagi ki sabse haseen baat likhun 💖<br><br>
+
+      Tumhari khamoshi mein bhi sukoon likhun 🤍<br>
+      Tumhari baaton mein apna poora jahaan likhun 💞<br><br>
+
+      Tumhe khone ka darr bhi pyaar sa lagta hai 😌<br>
+      Is ehsaas ko main apni mohabbat ki pehchaan likhun ❤️<br><br>
+
+      Ijazat ho to tumhari khubsurti ko gulaab likhun 🌹<br>
+      Aur tumhari muskaan ko apni jaan likhun 😍<br><br>
+
+      Har aansu tumhara meri dua ban jaaye 🤲<br>
+      Har hansi meri sirf tumhare naam likhun 😊💖<br><br>
+
+      Aur agar ijaazat ho tumhari mohabbat se… 🌸<br>
+      To apna aaj, apna kal,<br>
+      aur apni poori zindagi tumhare naam likhun ❤️🫶<br><br>
+
+      Forever yours 💞
+    </p>
+      </div>
+</div>
+
+<script>
+const music=document.getElementById("bgMusic");
+
+function enableMusic(){
+  music.muted=false;
+  music.play();
+  document.removeEventListener("click",enableMusic);
+  document.removeEventListener("touchstart",enableMusic);
+}
+document.addEventListener("click",enableMusic);
+document.addEventListener("touchstart",enableMusic);
+
+function go(n){
+  enableMusic();
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('p'+n).classList.add('active');
+}
+
+const noBtn=document.getElementById("noBtn");
+if(noBtn){
+  noBtn.addEventListener("mouseover",()=>{
+    noBtn.style.left=Math.random()*180-90+"px";
+    noBtn.style.top=Math.random()*180-90+"px";
+  });
+}
+
+function flip(el,msg){
+  el.classList.toggle("flip");
+  el.querySelector(".back").innerText=msg;
+}
+
+/* 🌹 FALLING ROSES */
+const roses=["🌹","🌸","💮","🌺","🍃"];
+
+function createRose(){
+  const r=document.createElement("div");
+  r.className="rose";
+  r.innerText=roses[Math.floor(Math.random()*roses.length)];
+  r.style.fontSize=Math.random()*22+14+"px";
+  r.style.left=Math.random()*100+"vw";
+  r.style.opacity=Math.random()*0.6+0.4;
+  r.style.animationDuration=(Math.random()*6+6)+"s, "+(Math.random()*3+2)+"s";
+  document.body.appendChild(r);
+  setTimeout(()=>r.remove(),14000);
+}
+
+setInterval(createRose,250);
+</script>
+
+</body>
+</html>
