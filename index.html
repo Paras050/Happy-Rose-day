@@ -108,6 +108,15 @@ button{
   display:flex;
   justify-content:center;
 }
+/* PAGE 3 BOTTOM CENTER BUTTON */
+.outside-btn{
+  position:absolute;
+  bottom:22px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:10;
+}
+
 /* ---------- GRID ---------- */
 .grid{
   display:grid;
@@ -271,11 +280,14 @@ button{
         </div>
       </div>
 
-
-</div>
-    <div class="page1-btn">
-      <button onclick="go(4)">Next 💘</button>
     </div>
+
+  </div>
+    <div class="outside-btn">
+    <button onclick="go(4)">Next 💘</button>
+  </div>
+</div>
+
 <!-- PAGE 4 -->
 <div class="page" id="p4">
   <div class="box">
@@ -362,5 +374,3 @@ setInterval(createRose,250);
 
 </body>
 </html>
-
-
